@@ -16,12 +16,11 @@ final class ViewModel: ObservableObject {
         
     func send(message: String) async {
         let messages: [MessageChatGPT] = [
-            MessageChatGPT(text: "You are a helpful assistant.", role: .system),
-            MessageChatGPT(text: "Cuando se lanzó el primer iPhone?", role: .user)
+            MessageChatGPT(text: "You are a helpful assistant.", role: .system)
         ] // 1
         let optionalParameters = ChatCompletionsOptionalParameters(temperature: 0.7,
                                                                    stream: true,
-                                                                   maxTokens: 50) // 2
+                                                                   maxTokens: 200) // 2
                 
         await MainActor.run {
             let myMessage = MessageChatGPT(text: message, role: .user)
@@ -33,7 +32,7 @@ final class ViewModel: ObservableObject {
 
         do {
             let stream = try await openAI.createChatCompletionsStream(model: .gpt4(.base),
-                                                                      messages: messages,
+                                                                      messages: self.messages,
                                                                       optionalParameters: optionalParameters) // 3
             
             for try await response in stream { // 4
