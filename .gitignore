@@ -1,3 +1,5 @@
 .DS_Store
 *.xcuserstate
 *.xcbkptlist
+/JARVIS.xcodeproj/project.xcworkspace/xcuserdata/home.xcuserdatad/UserInterfaceState.xcuserstate
+/JARVIS.xcodeproj/xcuserdata/home.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
